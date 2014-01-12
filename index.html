@@ -15,7 +15,56 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+
+        <div class="container">
+            <table class="truth-table table table-bordered table-condensed">
+                <tr>    
+                    <th>p</th>
+                    <th>q</th>
+                    <th>&#172;p <span class="descr">заперечення</span></th>
+                    <th>p &#8743; q <span class="descr">кон’юнкцiя</span></th>
+                    <th>p &#8744; q <span class="descr">диз’юнкцiя</span></th>
+                    <th>p &#8594; q <span class="descr">iмплiкацiя</span></th>
+                    <th>p &#126; q <span class="descr">еквiваленцiя</span></th>
+                </tr>     
+                <tr>
+                    <th scope="row">T</th>
+                    <th scope="row">T</th>
+                    <td>F</td>
+                    <td>T</td>
+                    <td>T</td>
+                    <td>T</td>
+                    <td>T</td>
+                </tr>
+                <tr>
+                    <th scope="row">T</th>
+                    <th scope="row">F</th>
+                    <td>F</td>
+                    <td>F</td>
+                    <td>T</td>
+                    <td>F</td>
+                    <td>F</td>
+                </tr>
+                <tr>
+                    <th scope="row">F</th>
+                    <th scope="row">T</th>
+                    <td>T</td>
+                    <td>F</td>
+                    <td>T</td>
+                    <td>T</td>
+                    <td>F</td>
+                </tr>
+                <tr>
+                    <th scope="row">F</th>
+                    <th scope="row">F</th>
+                    <td>T</td>
+                    <td>F</td>
+                    <td>F</td>
+                    <td>T</td>
+                    <td>T</td>
+                </tr>
+            </table>
+        </div>
 
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="js/vendor/bootstrap.min.js"></script>
