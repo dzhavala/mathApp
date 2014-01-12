@@ -77,30 +77,72 @@ body {
 /* Solution formula */
 .solution-formula {
     margin: 0 0 40px;
+    height: 40px;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
     }
     .wrap-element {
+        position: relative;
+        float: left;
         padding: 2px 5px;
         margin: 0 1px;
-        float: left;
         transition: background 1.5s ease;
         }
+        .wrap-element:before {
+            opacity: 0;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width:100%;
+            padding: 1px 0;
+            text-align: center;
+            font-size: 10px;
+            font-weight: bold;
+            background: rgba(255,0,0,0.1);
+            transition: all .5s ease;
+            border-radius: 4px;
+        }
+
+        .wrap-left {
+            }
+            .wrap-left:before {
+                content: "x";
+            }
+        
+        .wrap-right {
+            }
+            .wrap-right:before {
+                content: "y";
+            }
+        .wrap-operation {
+            }
+            .wrap-operation:before {
+                content: attr(data-type);
+            }
+
+        /* State: highlited */
         .wrap-element.highlited {
             background: #ddd;
             text-shadow:0 1px 0 #fff;
             border-radius: 4px;
-        }
-        .wrap-left {
-        }
-        .wrap-operation.highlited {
-            padding: 0 5px;
-            margin-top: 2px;
-            background: #CBD3F0;
-        }
-        .wrap-right {
-        }
+            }
+            .wrap-operation.highlited {
+                padding: 0 5px;
+                margin-top: 2px;
+                background: #CBD3F0;
+            }
+
+        /* State: Show markers */
+        .wrap-element.show-markers {
+            }
+            .wrap-element.show-markers:before {
+                opacity: 1;
+                margin-top: 2px;
+            }
+            .wrap-operation.show-markers:before {
+                margin-top: 4px;
+            }
 
 
 /* Step description */

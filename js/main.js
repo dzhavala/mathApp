@@ -50,6 +50,7 @@ function findColumnByName (colName) {
 
 function highliteProperColumn () {
     var columnName = $("#origin-formula").attr('data-type');
+    $("#origin-formula").find('.wrap-element').addClass('show-markers');
     trutnTableData.highliteColumn(columnName);
 }
 $("#run-step-1-2").on('click', highliteProperColumn);
