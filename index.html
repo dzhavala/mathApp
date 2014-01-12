@@ -19,52 +19,56 @@
         <div class="container">
 
             <!-- Truth table -->
-            <table class="truth-table table table-bordered table-condensed">
-                <tr>    
-                    <th>p</th>
-                    <th>q</th>
-                    <th>&#172;p <span class="descr">заперечення</span></th>
-                    <th>p &#8743; q <span class="descr">кон’юнкцiя</span></th>
-                    <th>p &#8744; q <span class="descr">диз’юнкцiя</span></th>
-                    <th>p &#8594; q <span class="descr">iмплiкацiя</span></th>
-                    <th>p &#126; q <span class="descr">еквiваленцiя</span></th>
-                </tr>     
-                <tr>
-                    <th scope="row">T</th>
-                    <th scope="row">T</th>
-                    <td>F</td>
-                    <td>T</td>
-                    <td>T</td>
-                    <td>T</td>
-                    <td>T</td>
-                </tr>
-                <tr>
-                    <th scope="row">T</th>
-                    <th scope="row">F</th>
-                    <td>F</td>
-                    <td>F</td>
-                    <td>T</td>
-                    <td>F</td>
-                    <td>F</td>
-                </tr>
-                <tr>
-                    <th scope="row">F</th>
-                    <th scope="row">T</th>
-                    <td>T</td>
-                    <td>F</td>
-                    <td>T</td>
-                    <td>T</td>
-                    <td>F</td>
-                </tr>
-                <tr>
-                    <th scope="row">F</th>
-                    <th scope="row">F</th>
-                    <td>T</td>
-                    <td>F</td>
-                    <td>F</td>
-                    <td>T</td>
-                    <td>T</td>
-                </tr>
+            <table id="truth-table" class="truth-table table table-bordered table-condensed">
+                <thead>
+                    <tr>    
+                        <th>x</th>
+                        <th>y</th>
+                        <th class="col-not">&#172;x <span class="descr">заперечення</span></th>
+                        <th class="col-and">x &#8743; y <span class="descr">кон’юнкцiя</span></th>
+                        <th class="col-or">x &#8744; y <span class="descr">диз’юнкцiя</span></th>
+                        <th class="col-then">x &#8594; y <span class="descr">iмплiкацiя</span></th>
+                        <th class="col-equ">x &#126; y <span class="descr">еквiваленцiя</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">T</th>
+                        <th scope="row">T</th>
+                        <td>F</td>
+                        <td>T</td>
+                        <td>T</td>
+                        <td>T</td>
+                        <td>T</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">T</th>
+                        <th scope="row">F</th>
+                        <td>F</td>
+                        <td>F</td>
+                        <td>T</td>
+                        <td>F</td>
+                        <td>F</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">F</th>
+                        <th scope="row">T</th>
+                        <td>T</td>
+                        <td>F</td>
+                        <td>T</td>
+                        <td>T</td>
+                        <td>F</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">F</th>
+                        <th scope="row">F</th>
+                        <td>T</td>
+                        <td>F</td>
+                        <td>F</td>
+                        <td>T</td>
+                        <td>T</td>
+                    </tr>
+                </tbody>
             </table>
             <!-- End of Truth table -->
 
@@ -81,13 +85,51 @@
             </section>
             <!-- End of Conditions of the problem -->
 
-            <!-- Solution formula -->
-            <div class="solution-formula clearfix">
-                <div class="wrap-left wrap-element">(p&#8743;q)</div>
-                <div class="wrap-operation wrap-element">&#8594;</div>
-                <div class="wrap-right wrap-element"> p</div>
-            </div>
-            <!-- End of Solution formula -->
+            <!-- Steps -->
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#step-1" data-toggle="tab">Крок 1</a></li>
+                    <li><a href="#step-2" data-toggle="tab">Крок 2</a></li>
+                    <li><a href="#step-3" data-toggle="tab">Крок 3</a></li>
+                </ul>
+                <!-- End of Nav tabs -->
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- Step 1 -->
+                    <div class="tab-pane fade in active active" id="step-1">
+                        <!-- Solution formula -->
+                        <div id="origin-formula" class="solution-formula clearfix" data-type="col-then">
+                            <div class="wrap-left wrap-element">(p&#8743;q)</div>
+                            <div class="wrap-operation wrap-element">&#8594;</div>
+                            <div class="wrap-right wrap-element"> p</div>
+                        </div>
+                        <!-- End of Solution formula -->
+                        
+                        <!-- Step description -->
+                        <ol class="step-description well">
+                            <li class="substep">
+                                <button type="button" id="run-step-1-1" class="run-button btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-play"></span>
+                                </button>
+                                <div class="substep-label">Розбиваємо формулу на складові</div>
+                            </li>
+                            <li class="substep">
+                                <button type="button" id="run-step-1-2" class="run-button btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-play"></span>
+                                </button>
+                                <div class="substep-label">Знаходимо в таблиці відповідний стовпчик з імплікацією</div>
+                            </li>
+                        </ol>
+                        <!-- End of Step description -->
+                    </div>
+                    <!-- End of Step 1 -->
+                    
+                    <div class="tab-pane fade" id="step-2">2..</div>
+                    <div class="tab-pane fade" id="step-3">3..</div>
+                </div>
+                <!-- End of Tab panes -->
+            <!-- End of Steps -->
 
         </div>
 

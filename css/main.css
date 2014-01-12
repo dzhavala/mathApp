@@ -13,32 +13,41 @@ body {
     margin:0 auto 20px;
     width: 500px;
     }
-    .truth-table tbody tr th {
+    .truth-table th,
+    .truth-table td {
+        text-align: center;
+        min-width: 40px;
+        transition: background 0.5s ease;
+    }
+    .truth-table thead tr th {
         text-align: center;
         border-bottom: #ccc solid 2px;
         background: #eee;
-        min-width: 40px;
+        min-width: 35px;
+        vertical-align: top;
         }
-        .truth-table th .descr {
+        .truth-table thead tr th .descr {
             display: block;
             font-size: 11px;
             font-style: italic;
             font-weight: normal;
             color: #666;
         }
-        .truth-table tbody tr th[scope=row] {
-            border-bottom: #ddd solid 1px;
-            background: #f9f9f9;
-        }
-    .truth-table td {
+    .truth-table tbody tr th {
         text-align: center;
-        min-width: 40px;
+        background: #f9f9f9;
+    }
+
+    /* State: highlited */
+    .truth-table th.highlited,
+    .truth-table td.highlited {
+        background: rgba(255,0,0,0.1);
     }
 
 
 /* Conditions of the problem */
 .problem-condition {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     }
     .condition-title {
         font-size: 16px;
@@ -59,28 +68,72 @@ body {
     }
 
 
+/* Tabs */
+.tab-pane {
+    padding: 10px;
+}
+
+
 /* Solution formula */
 .solution-formula {
-    width: 500px;
-    margin: 0 auto 40px;
+    margin: 0 0 40px;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
     }
     .wrap-element {
-        padding: 1px;
+        padding: 2px 5px;
+        margin: 0 1px;
         float: left;
-    }
+        transition: background 1.5s ease;
+        }
+        .wrap-element.highlited {
+            background: #ddd;
+            text-shadow:0 1px 0 #fff;
+            border-radius: 4px;
+        }
         .wrap-left {
         }
-        .wrap-operation {
+        .wrap-operation.highlited {
+            padding: 0 5px;
+            margin-top: 2px;
+            background: #CBD3F0;
         }
         .wrap-right {
         }
 
 
+/* Step description */
+.step-description {
+    font-size: 12px;
+    margin: 0;
+    list-style: none;
+    }
+    .substep {
+        margin: 0 0 15px 0;
+        padding: 0 0 0 40px;
+        position: relative;
+        transition: opacity 0.5s ease;
+        }
+        .substep .run-button {
+            position: absolute;
+            top: -7px;
+            left: 0;
+        }
+        .substep .substep-label {}
+    
+        .substep:last-child {
+            margin-bottom: 0;
+        }
 
-
+        /* State: Done */
+        .substep.done {
+            opacity: 0.5;
+            text-decoration: line-through;
+            }
+            .substep.done .run-button {
+                cursor: default;
+            }
 
 
 
