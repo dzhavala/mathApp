@@ -2,10 +2,15 @@ body {
     padding: 20px;
 }
 
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
 /* TRUTH TABLE */
 .truth-table {
     box-shadow: 0 1px 1px 0 rgba(0,0,0, 0.2);
-    margin:0 auto 40px;
+    margin:0 auto 20px;
     width: 500px;
     }
     .truth-table tbody tr th {
@@ -29,3 +34,61 @@ body {
         text-align: center;
         min-width: 40px;
     }
+
+
+/* Conditions of the problem */
+.problem-condition {
+    margin-bottom: 40px;
+    }
+    .condition-title {
+        font-size: 16px;
+    }
+    .condition-formula {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .popover-trigger {
+        display: inline-block;
+        border-bottom: #ccc dashed 1px;
+        color: #000;
+        cursor: pointer;
+    }
+    .popover-content {
+        font-size: 11px;
+    }
+
+
+/* Solution formula */
+.solution-formula {
+    width: 500px;
+    margin: 0 auto 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    }
+    .wrap-element {
+        padding: 1px;
+        float: left;
+    }
+        .wrap-left {
+        }
+        .wrap-operation {
+        }
+        .wrap-right {
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
