@@ -3,7 +3,7 @@ body {
 }
 
 .container {
-    max-width: 500px;
+    max-width: 530px;
     margin: 0 auto;
 }
 
@@ -47,10 +47,23 @@ body {
 
 /* Conditions of the problem */
 .problem-condition {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    position: relative;
+    border: #ddd solid 1px;
+    border-radius: 5px;
+    }
+    .block-title {
+        position: absolute;
+        top: -9px;
+        left: 10px;
+        padding: 0 10px;
+        background: #fff;
+        font-size: 12px;
     }
     .condition-title {
-        font-size: 16px;
+        font-size: 14px;
+        margin: 0 0 10px;
     }
     .condition-formula {
         text-align: center;
@@ -76,7 +89,7 @@ body {
 
 /* Solution formula */
 .solution-formula {
-    margin: 0 0 40px;
+    margin: 0 0 30px;
     height: 40px;
     font-size: 20px;
     font-weight: bold;
@@ -145,6 +158,24 @@ body {
             }
 
 
+/* Solution blueprints */
+.solution-blueprints {
+
+}
+.solution-blueprint {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #999;
+}
+.solution-blueprint .wrap-element {
+    float: left;
+}
+.solution-blueprint .wrap-left {}
+.solution-blueprint .wrap-right {}
+.solution-blueprint .wrap-operation {}
+.solution-blueprint .wrap-equal {}
+.solution-blueprint .wrap-result {}
+
 /* Step description */
 .step-description {
     font-size: 12px;
@@ -171,7 +202,6 @@ body {
         /* State: Done */
         .substep.done {
             opacity: 0.5;
-            text-decoration: line-through;
             }
             .substep.done .run-button {
                 cursor: default;

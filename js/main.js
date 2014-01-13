@@ -18,6 +18,8 @@ $('.substep .run-button').on('click', function(e){
     $(this).off('click').attr('disabled', 'disabled');
 })
 
+var $truthTable = $('#truth-table');
+var columnName = $("#origin-formula").attr('data-type');
 
 var trutnTableData = {
     columns: {
@@ -31,11 +33,21 @@ var trutnTableData = {
         $.each(this.columns[colName], function( index, $item ) {
             $item.addClass('highlited');
         });
+    },
+    getRowBlueprintData: function(rowIndex, colName) {
+        var $row = $truthTable.find('tbody tr').eq(rowIndex);
+        var $columnThead = $truthTable.find('thead ' + colName);
+        return {
+            x: $row.find('th').eq(0).text(),
+            operation : $columnThead.find('.operation').text(),
+            y: $row.find('th').eq(1).text(),
+            result : $row.find('td').eq($columnThead.index()-2).text()
+        }
     }
 };
 
+
 function findColumnByName (colName) {
-    var $truthTable = $('#truth-table'); 
     var $columnThead = $truthTable.find('thead ' + colName);
     var index = $columnThead.index()-2;
     var column = [];
@@ -49,8 +61,33 @@ function findColumnByName (colName) {
 
 
 function highliteProperColumn () {
-    var columnName = $("#origin-formula").attr('data-type');
     $("#origin-formula").find('.wrap-element').addClass('show-markers');
     trutnTableData.highliteColumn(columnName);
-}
+};
+
 $("#run-step-1-2").on('click', highliteProperColumn);
+
+function createBlueprints() {
+    var $trArr = $truthTable.find('tbody tr');
+    for (var i=0, len = $trArr.length; i<len; i++ ) {
+        var blueprintData = trutnTableData.getRowBlueprintData(i, '.' + columnName);
+        generateBlueprintFromTemplate(blueprintData);
+    };
+    
+
+};
+
+function generateBlueprintFromTemplate(data){
+    var $blueprintsWrapper = $('.solution-blueprints');
+    var $template = $('#solution-blueprint-template');
+    var $blueprint = $template.clone()
+                    .removeAttr('id').removeClass('hidden')
+                    .find('.wrap-left').text(data.x).end()
+                    .find('.wrap-operation').text(data.operation).end()
+                    .find('.wrap-right').text(data.y).end()
+                    .find('.wrap-result').text(data.result).end()
+                    .appendTo($blueprintsWrapper);
+    return $blueprint;
+};
+
+$("#run-step-2-1").on('click', createBlueprints);

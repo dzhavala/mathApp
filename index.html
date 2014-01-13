@@ -24,11 +24,11 @@
                     <tr>    
                         <th>x</th>
                         <th>y</th>
-                        <th class="col-not">&#172;x <span class="descr">заперечення</span></th>
-                        <th class="col-and">x &#8743; y <span class="descr">кон’юнкцiя</span></th>
-                        <th class="col-or">x &#8744; y <span class="descr">диз’юнкцiя</span></th>
-                        <th class="col-then">x &#8594; y <span class="descr">iмплiкацiя</span></th>
-                        <th class="col-equ">x &#126; y <span class="descr">еквiваленцiя</span></th>
+                        <th class="col-not"><span class="operation">&#172;</span>x <span class="descr">заперечення</span></th>
+                        <th class="col-and">x <span class="operation">&#8743;</span> y <span class="descr">кон’юнкцiя</span></th>
+                        <th class="col-or">x <span class="operation">&#8744;</span> y <span class="descr">диз’юнкцiя</span></th>
+                        <th class="col-then">x <span class="operation">&#8594;</span> y <span class="descr">iмплiкацiя</span></th>
+                        <th class="col-equ">x <span class="operation">&#126;</span> y <span class="descr">еквiваленцiя</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,9 +74,10 @@
 
             <!-- Conditions of the problem -->
             <section class="problem-condition">
+                <span class="block-title">Умова задачі</span>
                 <h1 class="condition-title">
                     Перевірити чи є <span class="popover-trigger" title="" data-toggle="popover" data-placement="top" data-content="
-                Фомула рівна True в усіх її інтерпретаціях
+                Формула рівна True в усіх її інтерпретаціях
                 ">тавтологією</span> висловлення:
                 </h1>
                 <div class="condition-formula">
@@ -84,6 +85,28 @@
                 </div>
             </section>
             <!-- End of Conditions of the problem -->
+            
+            <!-- Solution formula -->
+            <div id="origin-formula" class="solution-formula clearfix" data-type="col-then">
+                <div class="wrap-left wrap-element">(p&#8743;q) </div>
+                <div class="wrap-operation wrap-element" data-type="&#8594;">&#8594;</div>
+                <div class="wrap-right wrap-element"> p </div>
+            </div>
+            <!-- End of Solution formula -->
+            
+            <!-- Solution blueprints -->
+            <section class="solution-blueprints">
+
+                <div id="solution-blueprint-template" class="solution-blueprint clearfix hidden">
+                    <div class="wrap-left wrap-element">T </div>
+                    <div class="wrap-operation wrap-element">&#8594;</div>
+                    <div class="wrap-right wrap-element"> T </div>
+                    <div class="wrap-equal wrap-element">=</div>
+                    <div class="wrap-result wrap-element"> T </div>
+                </div>
+
+            </section>
+            <!-- End of Solution blueprints -->
 
             <!-- Steps -->
                 <!-- Nav tabs -->
@@ -94,18 +117,12 @@
                 </ul>
                 <!-- End of Nav tabs -->
 
+
+
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <!-- Step 1 -->
                     <div class="tab-pane fade in active active" id="step-1">
-                        <!-- Solution formula -->
-                        <div id="origin-formula" class="solution-formula clearfix" data-type="col-then">
-                            <div class="wrap-left wrap-element">(p&#8743;q) </div>
-                            <div class="wrap-operation wrap-element" data-type="&#8594;">&#8594;</div>
-                            <div class="wrap-right wrap-element"> p </div>
-                        </div>
-                        <!-- End of Solution formula -->
-                        
                         <!-- Step description -->
                         <ol class="step-description well">
                             <li class="substep">
@@ -118,14 +135,28 @@
                                 <button type="button" id="run-step-1-2" class="run-button btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-play"></span>
                                 </button>
-                                <div class="substep-label">Знаходимо в таблиці відповідний стовпчик з імплікацією</div>
+                                <div class="substep-label">Знаходимо в таблиці стовпчик з відповідною операцією</div>
                             </li>
                         </ol>
                         <!-- End of Step description -->
                     </div>
                     <!-- End of Step 1 -->
                     
-                    <div class="tab-pane fade" id="step-2">2..</div>
+                    <!-- Step 2 -->
+                    <div class="tab-pane fade" id="step-2">
+                        <!-- Step description -->
+                        <ol class="step-description well">
+                            <li class="substep">
+                                <button type="button" id="run-step-2-1" class="run-button btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-play"></span>
+                                </button>
+                                <div class="substep-label">Розглянемо результати всіх можливих комбінації <strong>x</strong> та <strong>y</strong> для даного виразу з таблиці істиності.</div>
+                            </li>
+                        </ol>
+                        <!-- End of Step description -->
+                    </div>
+                    <!-- End of Step 2 -->
+
                     <div class="tab-pane fade" id="step-3">3..</div>
                 </div>
                 <!-- End of Tab panes -->
