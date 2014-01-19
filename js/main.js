@@ -5,7 +5,7 @@ function highliteFormulaElement (element) {
 }
 
 function highliteOriginFormulaElements (argument) {
-    var $formulaElements = $('#origin-formula .wrap-element');
+    var $formulaElements = $originFormula.find('.wrap-element');
     for (var i = 0; i < $formulaElements.length; i++) {
         setTimeout(highliteFormulaElement, i*500, $formulaElements[i]);
     };
@@ -19,7 +19,8 @@ $('.substep .run-button').on('click', function(e){
 })
 
 var $truthTable = $('#truth-table');
-var columnName = $("#origin-formula").attr('data-type');
+var $originFormula = $("#origin-formula");
+var columnName = $originFormula.attr('data-type');
 
 var trutnTableData = {
     columns: {
@@ -61,23 +62,22 @@ function findColumnByName (colName) {
 
 
 function highliteProperColumn () {
-    $("#origin-formula").find('.wrap-element').addClass('show-markers');
+    $originFormula.find('.wrap-element').addClass('show-markers');
     trutnTableData.highliteColumn(columnName);
 };
 
 $("#run-step-1-2").on('click', highliteProperColumn);
 
-function createBlueprints() {
+function createBlueprints () {
     var $trArr = $truthTable.find('tbody tr');
     for (var i=0, len = $trArr.length; i<len; i++ ) {
         var blueprintData = trutnTableData.getRowBlueprintData(i, '.' + columnName);
-        generateBlueprintFromTemplate(blueprintData);
+        var $blueprint = generateBlueprintFromTemplate(blueprintData);
+        setBlueprintProperWidth($blueprint);
     };
-    
-
 };
 
-function generateBlueprintFromTemplate(data){
+function generateBlueprintFromTemplate (data){
     var $blueprintsWrapper = $('.solution-blueprints');
     var $template = $('#solution-blueprint-template');
     var $blueprint = $template.clone()
@@ -88,6 +88,12 @@ function generateBlueprintFromTemplate(data){
                     .find('.wrap-result').text(data.result).end()
                     .appendTo($blueprintsWrapper);
     return $blueprint;
+};
+
+function setBlueprintProperWidth ($blueprint){
+    $blueprint.find('.wrap-left').width($originFormula.find('.wrap-left').width()).end()
+              .find('.wrap-operation').width($originFormula.find('.wrap-operation').width()).end()
+              .find('.wrap-right').width($originFormula.find('.wrap-right').width());
 };
 
 $("#run-step-2-1").on('click', createBlueprints);

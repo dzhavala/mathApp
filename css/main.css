@@ -15,25 +15,26 @@ body {
     }
     .truth-table th,
     .truth-table td {
+        vertical-align: top !important;
         text-align: center;
         min-width: 40px;
         transition: background 0.5s ease;
     }
-    .truth-table thead tr th {
+    .truth-table thead th {
         text-align: center;
         border-bottom: #ccc solid 2px;
         background: #eee;
         min-width: 35px;
         vertical-align: top;
         }
-        .truth-table thead tr th .descr {
+        .truth-table thead th .descr {
             display: block;
             font-size: 11px;
             font-style: italic;
             font-weight: normal;
             color: #666;
         }
-    .truth-table tbody tr th {
+    .truth-table tbody th {
         text-align: center;
         background: #f9f9f9;
     }
@@ -43,6 +44,24 @@ body {
     .truth-table td.highlited {
         background: rgba(255,0,0,0.1);
     }
+
+    /* Type: blurred */
+    .truth-table.blurred {
+        color: #aaa
+        }
+        .truth-table.blurred .descr {
+            color: #ccc
+        }
+        /* State: highlited column */
+        .truth-table.blurred .highlited,
+        .truth-table.blurred .x,
+        .truth-table.blurred .y {
+            color: #000;
+            font-weight: bold;
+        }
+        .truth-table.blurred .highlited .descr {
+            color: #333;
+        }
 
 
 /* Conditions of the problem */
@@ -170,9 +189,9 @@ body {
 .solution-blueprint .wrap-element {
     float: left;
 }
-.solution-blueprint .wrap-left {}
+.solution-blueprint .wrap-left { text-align: right;}
 .solution-blueprint .wrap-right {}
-.solution-blueprint .wrap-operation {}
+.solution-blueprint .wrap-operation { text-align: center;}
 .solution-blueprint .wrap-equal {}
 .solution-blueprint .wrap-result {}
 
