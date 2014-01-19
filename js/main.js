@@ -30,13 +30,27 @@ var trutnTableData = {
         'col-then': findColumnByName('.col-then'),
         'col-equ': findColumnByName('.col-equ')
     },
+    blur: function(){
+        $truthTable.addClass('blurred');
+    },
     highliteColumn: function(colName) {
         $.each(this.columns[colName], function( index, $item ) {
             $item.addClass('highlited');
         });
     },
+    getRow: function(rowIndex){
+        return $truthTable.find('tbody tr').eq(rowIndex);
+    },
+    highliteRow: function(rowIndex) {
+        var $row = this.getRow(rowIndex);
+        $row.addClass('highlited-row');
+    },
+    reHighliteRow: function(rowIndex) {
+        var $row = this.getRow(rowIndex);
+        $row.removeClass('highlited-row');
+    },
     getRowBlueprintData: function(rowIndex, colName) {
-        var $row = $truthTable.find('tbody tr').eq(rowIndex);
+        var $row = this.getRow(rowIndex);
         var $columnThead = $truthTable.find('thead ' + colName);
         return {
             x: $row.find('th').eq(0).text(),
@@ -66,28 +80,53 @@ function highliteProperColumn () {
     trutnTableData.highliteColumn(columnName);
 };
 
-$("#run-step-1-2").on('click', highliteProperColumn);
+$("#run-step-1-2").on('click', function() {
+    trutnTableData.blur();
+    highliteProperColumn();
+});
 
 function createBlueprints () {
     var $trArr = $truthTable.find('tbody tr');
-    for (var i=0, len = $trArr.length; i<len; i++ ) {
-        var blueprintData = trutnTableData.getRowBlueprintData(i, '.' + columnName);
-        var $blueprint = generateBlueprintFromTemplate(blueprintData);
-        setBlueprintProperWidth($blueprint);
-    };
+     for (var i=0, len = $trArr.length; i<len; i++ ) {
+        (function(i) {
+            setTimeout(function() {
+                trutnTableData.highliteRow(i);
+                setTimeout(trutnTableData.reHighliteRow.bind(trutnTableData), 1100, i);
+                var blueprintData = trutnTableData.getRowBlueprintData(i, '.' + columnName);
+                var $blueprint = generateBlueprintFromTemplate(blueprintData);
+                placeBlueprint($blueprint);
+                setBlueprintProperWidth($blueprint);
+                highliteBlueprint($blueprint);
+            }, i * 1000);
+        })(i);
+    }
 };
 
-function generateBlueprintFromTemplate (data){
-    var $blueprintsWrapper = $('.solution-blueprints');
+// Generate blueprint unit by filling blueprint template with proper data
+function generateBlueprintFromTemplate (data){    
     var $template = $('#solution-blueprint-template');
     var $blueprint = $template.clone()
                     .removeAttr('id').removeClass('hidden')
                     .find('.wrap-left').text(data.x).end()
                     .find('.wrap-operation').text(data.operation).end()
                     .find('.wrap-right').text(data.y).end()
-                    .find('.wrap-result').text(data.result).end()
-                    .appendTo($blueprintsWrapper);
+                    .find('.wrap-result').text(data.result).end();
     return $blueprint;
+};
+
+// Place generated blueprint under formula
+function placeBlueprint($blueprint){
+    var $blueprintsWrapper = $('.solution-blueprints');
+    $blueprint.appendTo($blueprintsWrapper);
+};
+
+function highliteBlueprint($blueprint) {
+    $blueprint.addClass('highlited');
+    setTimeout(reHighliteBlueprint, 1100, $blueprint);
+};
+
+function reHighliteBlueprint($blueprint) {
+    $blueprint.removeClass('highlited');
 };
 
 function setBlueprintProperWidth ($blueprint){

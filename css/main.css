@@ -39,7 +39,7 @@ body {
         background: #f9f9f9;
     }
 
-    /* State: highlited */
+    /* State: highlited cell */
     .truth-table th.highlited,
     .truth-table td.highlited {
         background: rgba(255,0,0,0.1);
@@ -61,6 +61,16 @@ body {
         }
         .truth-table.blurred .highlited .descr {
             color: #333;
+        }
+
+    /* State: highlited row */
+    .truth-table .highlited-row td {
+        background: rgba(255,0,0,0.05);
+        }
+        .truth-table .highlited-row .highlited,
+        .truth-table .highlited-row .x,
+        .truth-table .highlited-row .y {
+            background: rgba(255,0,0,0.2);
         }
 
 
@@ -179,12 +189,13 @@ body {
 
 /* Solution blueprints */
 .solution-blueprints {
-
+    margin: -10px 0 20px;
 }
 .solution-blueprint {
     margin-bottom: 10px;
     font-weight: bold;
-    color: #999;
+    color: #333;
+    transition: background 0.5s ease;
 }
 .solution-blueprint .wrap-element {
     float: left;
@@ -194,6 +205,12 @@ body {
 .solution-blueprint .wrap-operation { text-align: center;}
 .solution-blueprint .wrap-equal {}
 .solution-blueprint .wrap-result {}
+
+/* State: blueprint highlited */
+.solution-blueprint.highlited {
+    color: #000;
+    background: rgba(255,0,0,0.1);
+}
 
 /* Step description */
 .step-description {
