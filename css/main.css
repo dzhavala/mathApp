@@ -195,7 +195,8 @@ body {
     margin-bottom: 10px;
     font-weight: bold;
     color: #333;
-    transition: background 0.5s ease;
+    opacity: 1;
+    transition: background 0.5s ease, opacity 1.5s ease;
 }
 .solution-blueprint .wrap-element {
     float: left;
@@ -205,6 +206,11 @@ body {
 .solution-blueprint .wrap-operation { text-align: center;}
 .solution-blueprint .wrap-equal {}
 .solution-blueprint .wrap-result {}
+
+/* State: blueprint invisible */
+.solution-blueprint.invisible-state {
+    opacity: 0;
+}
 
 /* State: blueprint highlited */
 .solution-blueprint.highlited {

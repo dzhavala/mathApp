@@ -121,7 +121,7 @@ function placeBlueprint($blueprint){
 };
 
 function highliteBlueprint($blueprint) {
-    $blueprint.addClass('highlited');
+    $blueprint.addClass('highlited').removeClass('invisible-state');
     setTimeout(reHighliteBlueprint, 1100, $blueprint);
 };
 
