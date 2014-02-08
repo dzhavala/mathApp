@@ -7,7 +7,9 @@ body {
     margin: 0 auto;
 }
 
-/* TRUTH TABLE */
+/* 
+    TRUTH TABLE 
+*/
 .truth-table {
     box-shadow: 0 1px 1px 0 rgba(0,0,0, 0.2);
     margin:0 auto 20px;
@@ -74,7 +76,9 @@ body {
         }
 
 
-/* Conditions of the problem */
+/* 
+    CONDITIONS OF THE PROBLEM 
+*/
 .problem-condition {
     margin-bottom: 30px;
     padding: 20px;
@@ -110,13 +114,17 @@ body {
     }
 
 
-/* Tabs */
+/* 
+    TABS 
+*/
 .tab-pane {
     padding: 10px;
 }
 
 
-/* Solution formula */
+/* 
+    SOLUTION FORMULA 
+*/
 .solution-formula {
     margin: 0 0 30px;
     height: 40px;
@@ -162,6 +170,15 @@ body {
             .wrap-operation:before {
                 content: attr(data-type);
             }
+        .wrap-result {
+            border-radius: 100%;
+            padding: 2px 8px;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            background: transparent;
+            transition: background 0.5s ease 1s;
+        }
 
         /* State: highlited */
         .wrap-element.highlited {
@@ -185,9 +202,35 @@ body {
             .wrap-operation.show-markers:before {
                 margin-top: 4px;
             }
+    
+    /* Formula result */
+    .formula-result {
+        position: relative;
+        float: left;
+        padding: 5px 0px;
+        font-size: 14px;
+        transition: opacity 0.5s ease;
+        opacity: 0;
+        }
+        .formula-result .wrap-element {
+
+            }
+            .formula-result .wrap-element:before {
+                display: none;
+            }
+
+        /* State: show formula result */
+        .show-result .formula-result {
+             opacity: 1;
+        }
+        .show-result .wrap-result {
+            background: #fc0;
+        } 
 
 
-/* Solution blueprints */
+/* 
+    SOLUTION BLUEPRINTS
+*/
 .solution-blueprints {
     margin: -10px 0 20px;
 }
@@ -197,15 +240,41 @@ body {
     color: #333;
     opacity: 1;
     transition: background 0.5s ease, opacity 1.5s ease;
-}
-.solution-blueprint .wrap-element {
-    float: left;
-}
-.solution-blueprint .wrap-left { text-align: right;}
-.solution-blueprint .wrap-right {}
-.solution-blueprint .wrap-operation { text-align: center;}
-.solution-blueprint .wrap-equal {}
-.solution-blueprint .wrap-result {}
+    }
+    .solution-blueprint .wrap-element {}
+    .solution-blueprint .wrap-left { text-align: right;}
+    .solution-blueprint .wrap-right {}
+    .solution-blueprint .wrap-operation { text-align: center;}
+    .solution-blueprint .wrap-equal {}
+    .solution-blueprint .wrap-result {}
+    
+    /* Result in blueprint unit matches with result of orig formula */
+    .solution-blueprint .result-match { 
+        float: left;
+        margin: 4px 0 0 10px;
+        font-size: 10px;
+        opacity: 0;
+        transition: opacity 0.5s ease 2s;
+        }
+        .solution-blueprint .result-match .match-icon {
+            display: none;
+        }
+        
+        /* Show result mathing */
+        .solution-blueprint.show-result-matching .wrap-result {
+            background: #fc0;
+        } 
+        .solution-blueprint.show-result-matching .result-match {
+            opacity: 1;
+        }
+        .solution-blueprint.positive .result-match .positive {
+            display: block;
+            color: green;
+        }
+        .solution-blueprint.negative .result-match .negative {
+            display: block;
+            color: red;
+        }
 
 /* State: blueprint invisible */
 .solution-blueprint.invisible-state {
@@ -218,7 +287,10 @@ body {
     background: rgba(255,0,0,0.1);
 }
 
-/* Step description */
+
+/* 
+    STEP DESCRIPTION 
+*/
 .step-description {
     font-size: 12px;
     margin: 0;

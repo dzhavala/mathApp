@@ -5,7 +5,7 @@ function highliteFormulaElement (element) {
 }
 
 function highliteOriginFormulaElements (argument) {
-    var $formulaElements = $originFormula.find('.wrap-element');
+    var $formulaElements = $originFormula.children('.wrap-element');
     for (var i = 0; i < $formulaElements.length; i++) {
         setTimeout(highliteFormulaElement, i*500, $formulaElements[i]);
     };
@@ -20,6 +20,7 @@ $('.substep .run-button').on('click', function(e){
 
 var $truthTable = $('#truth-table');
 var $originFormula = $("#origin-formula");
+var $blueprints = [];
 var columnName = $originFormula.attr('data-type');
 
 var trutnTableData = {
@@ -97,6 +98,7 @@ function createBlueprints () {
                 placeBlueprint($blueprint);
                 setBlueprintProperWidth($blueprint);
                 highliteBlueprint($blueprint);
+                $blueprints.push($blueprint);
             }, i * 1000);
         })(i);
     }
@@ -136,3 +138,28 @@ function setBlueprintProperWidth ($blueprint){
 };
 
 $("#run-step-2-1").on('click', createBlueprints);
+
+// Step 3
+$("#run-step-3-1").on('click', showResultMatching);
+
+function showResultMatching (argument) {
+    showOrigFormulaResult();
+    showBlubrientsResultMatching();
+}
+
+function showOrigFormulaResult() {
+    $originFormula.addClass('show-result');
+}
+
+function showBlubrientsResultMatching() {
+    var origResult = $originFormula.find('.formula-result .wrap-result').text();
+    $.each($blueprints, function( index, $blueprint ) {
+        var blueprintResult = $blueprint.find('.wrap-result').text()
+        if($.trim(origResult) === $.trim(blueprintResult)) {
+            $blueprint.addClass('positive');
+        } else {
+            $blueprint.addClass('negative');
+        }
+        $blueprint.addClass('show-result-matching');
+    });
+}
