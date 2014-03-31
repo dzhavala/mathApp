@@ -23,7 +23,7 @@ var $originFormula = $("#origin-formula");
 var $blueprints = [];
 var columnName = $originFormula.attr('data-type');
 
-var trutnTableData = {
+var truthTableData = {
     columns: {
         'col-not': findColumnByName('.col-not'),
         'col-and': findColumnByName('.col-and'),
@@ -49,6 +49,22 @@ var trutnTableData = {
     reHighliteRow: function(rowIndex) {
         var $row = this.getRow(rowIndex);
         $row.removeClass('highlited-row');
+    },
+    reHighliteTable: function() {
+        var rowsLength = $truthTable.find('tbody tr').length -1;
+        for (var i = 0; i < rowsLength; i++) {
+            if(this.getRow(i).is('.highlited-row')) {
+                this.reHighliteRow(i);
+            }
+        };
+
+        $.each($truthTable.find('thead th'), function( index, $item ) {
+            $($item).removeClass('highlited');
+        });
+
+        $.each($truthTable.find('tbody td'), function( index, $item ) {
+            $($item).removeClass('highlited');
+        });
     },
     getRowBlueprintData: function(rowIndex, colName) {
         var $row = this.getRow(rowIndex);
@@ -78,11 +94,11 @@ function findColumnByName (colName) {
 
 function highliteProperColumn () {
     $originFormula.find('.wrap-element').addClass('show-markers');
-    trutnTableData.highliteColumn(columnName);
+    truthTableData.highliteColumn(columnName);
 };
 
 $("#run-step-1-2").on('click', function() {
-    trutnTableData.blur();
+    truthTableData.blur();
     highliteProperColumn();
 });
 
@@ -91,9 +107,9 @@ function createBlueprints () {
      for (var i=0, len = $trArr.length; i<len; i++ ) {
         (function(i) {
             setTimeout(function() {
-                trutnTableData.highliteRow(i);
-                setTimeout(trutnTableData.reHighliteRow.bind(trutnTableData), 1100, i);
-                var blueprintData = trutnTableData.getRowBlueprintData(i, '.' + columnName);
+                truthTableData.highliteRow(i);
+                setTimeout(truthTableData.reHighliteRow.bind(truthTableData), 1100, i);
+                var blueprintData = truthTableData.getRowBlueprintData(i, '.' + columnName);
                 var $blueprint = generateBlueprintFromTemplate(blueprintData);
                 placeBlueprint($blueprint);
                 setBlueprintProperWidth($blueprint);
@@ -144,14 +160,14 @@ $("#run-step-3-1").on('click', showResultMatching);
 
 function showResultMatching (argument) {
     showOrigFormulaResult();
-    showBlubrientsResultMatching();
+    showBlueprintsResultMatching();
 }
 
 function showOrigFormulaResult() {
-    $originFormula.addClass('show-result');
+    $originFormula.addClass('show-result highlite-result');
 }
 
-function showBlubrientsResultMatching() {
+function showBlueprintsResultMatching() {
     var origResult = $originFormula.find('.formula-result .wrap-result').text();
     $.each($blueprints, function( index, $blueprint ) {
         var blueprintResult = $blueprint.find('.wrap-result').text()
@@ -163,3 +179,201 @@ function showBlubrientsResultMatching() {
         $blueprint.addClass('show-result-matching');
     });
 }
+
+// Step 4
+$("#run-step-4-1").on('click', hideUnmatchedRulesAndMainResult);
+
+function hideUnmatchedRulesAndMainResult () {
+    hideUnmatchedRules();
+    changeOriginFormulaResultValue();
+    highliteMatchedTableRow();
+    hideOriginFormulaMarkers();
+}
+
+
+
+function hideUnmatchedRules() {
+    $.each($blueprints, function( index, $blueprint ) {
+        if ($blueprint.is('.positive')) {
+            $blueprint.addClass('invisible-state');
+        } else {
+             $blueprint.removeClass('show-result-matching negative');
+        }
+    });
+}
+
+function changeOriginFormulaResultValue() {
+    $originFormula.removeClass('highlite-result');
+    $originFormula.find('.formula-result .wrap-result').text('F');
+}
+
+function highliteMatchedTableRow(){
+    $.each($blueprints, function( index, $blueprint ) {
+        if (!$blueprint.is('.invisible-state')) {
+            var i = $blueprint.index()-1;
+            truthTableData.highliteRow(i);
+        }        
+    });
+}
+
+function hideOriginFormulaMarkers() {
+    $originFormula.find('.wrap-element').removeClass('show-markers');
+}
+
+
+// Step 5
+$("#run-step-5-1").on('click', showSolvingSteps);
+
+function showSolvingSteps () {
+    var $solvingStep1 = $('#solving-step-1');
+    $('#solving-step-1').removeClass('hidden');
+    $solvingStep1.find('.el-left').css({
+        'left': 0,
+        'width': $originFormula.find('.wrap-left').width()
+    });
+    $solvingStep1.find('.el-operation').css({
+        'left': $originFormula.find('.wrap-operation').position().left,
+        'width': $originFormula.find('.wrap-operation').width()
+    });
+    $solvingStep1.find('.el-right').css({
+        'left': $originFormula.find('.wrap-right').position().left,
+        'width': $originFormula.find('.wrap-right').width()
+    });
+    $solvingStep1.find('.solving-formula-result').css({
+        'left': $originFormula.find('.formula-result').position().left
+    });
+    $solvingStep1.find('.el-equal').css({
+        'left': $originFormula.find('.wrap-equal').position().left,
+        'width': $originFormula.find('.wrap-equal').width()
+    });
+    $solvingStep1.find('.el-result').css({
+        'left': $originFormula.find('.wrap-result').position().left,
+        'width': $originFormula.find('.wrap-result').width()
+    });
+}
+
+// Step 6
+$("#run-step-6-1").on('click', highliteEquationToPrecessElem);
+
+function highliteEquationToPrecessElem () {
+    $('.solution-blueprint').not('.invisible-state').find('.equation-to-process').addClass('highlited');
+    $('#formula-solving').find('#solving-step-1').find('.equation-to-process').addClass('highlited');
+
+    truthTableData.reHighliteTable();
+    columnName = $('#formula-solving').find('#solving-step-1').find('.equation-to-process').data('type');
+    createStepEquationMain(columnName);
+}
+
+$("#run-step-6-2").on('click', highliteStepEquationRow);
+
+var $stepEquationBlueprints = [];
+
+function highliteStepEquationRow(){
+    truthTableData.reHighliteTable();
+    //columnName = $('#formula-solving').find('#solving-step-1').find('.equation-to-process').data('type');
+    truthTableData.highliteColumn(columnName);
+    createStepEquationBlueprints();
+}
+
+// Place generated blueprint under formula
+function placeStepEquationBlueprint($blueprint){
+    var $blueprintsWrapper = $('.step-equation-blueprints');
+    $blueprint.appendTo($blueprintsWrapper);
+};
+
+function createStepEquationMain(columnName) {
+    var blueprintData = {
+            x: 'F',
+            operation : $truthTable.find('thead .' + columnName).find('.operation').text(),
+            y: 'q',
+            result : 'T'
+        };
+    var $blueprint = generateBlueprintFromTemplate(blueprintData);
+    $blueprint.addClass('main-equation-step-blueprint');
+    placeStepEquationBlueprint($blueprint);
+    setBlueprintProperWidth($blueprint);
+    highliteBlueprint($blueprint);
+}
+
+function createStepEquationBlueprints () {
+    var $trArr = $truthTable.find('tbody tr');
+    var j = 0;
+     for (var i=0, len = $trArr.length; i<len; i++ ) {
+        if($($trArr[i]).find('.x').text() == 'F') {
+            (function(i, j) {
+                setTimeout(function() {
+                    truthTableData.highliteRow(i);
+                    setTimeout(truthTableData.reHighliteRow.bind(truthTableData), 1100, i);
+                    var blueprintData = truthTableData.getRowBlueprintData(i, '.' + columnName);
+                    var $blueprint = generateBlueprintFromTemplate(blueprintData);
+                    placeStepEquationBlueprint($blueprint);
+                    setBlueprintProperWidth($blueprint);
+                    highliteBlueprint($blueprint);
+                    $stepEquationBlueprints.push($blueprint);
+                }, j * 1000);
+            })(i, j);
+            j++;
+        }
+    }
+};
+
+
+$("#run-step-6-3").on('click', showStepEquationResultMatching);
+
+function showStepEquationResultMatching () {
+    showOrigStepEquationFormulaResult();
+    showStepEquationBlueprintsResultMatching();
+}
+
+function showOrigStepEquationFormulaResult() {
+    $('.main-equation-step-blueprint').addClass('show-result-matching');
+}
+
+function showStepEquationBlueprintsResultMatching() {
+    var origResult = $('.main-equation-step-blueprint').find('.wrap-result').text();
+    $.each($stepEquationBlueprints, function( index, $blueprint ) {
+        var blueprintResult = $blueprint.find('.wrap-result').text()
+        if($.trim(origResult) === $.trim(blueprintResult)) {
+            $blueprint.addClass('positive');
+        } else {
+            $blueprint.addClass('negative');
+        }
+        $blueprint.addClass('show-result-matching');
+    });
+}
+
+
+// Step 7
+$("#run-step-7-1").on('click', failStepEquationResult);
+
+function failStepEquationResult () {
+    hideUnmatchedStepEquationResults();
+    failOrigStepEquationFormulaResult();
+}
+
+function hideUnmatchedStepEquationResults() {
+    $.each($stepEquationBlueprints, function( index, $blueprint ) {
+        $blueprint.addClass('invisible-state');
+    });
+}
+
+function failOrigStepEquationFormulaResult () {
+    $('.main-equation-step-blueprint').addClass('failed-matching');
+}
+
+$("#run-step-7-2").on('click', failAllResults);
+
+function failAllResults () {
+    $('#solving-step-1').addClass('failed-matching');
+    $('.solution-blueprint').not('.invisible-state').addClass('failed-matching');
+    $originFormula.find('.wrap-result').addClass('failed-matching');
+    truthTableData.reHighliteTable();
+}
+
+$("#run-step-7-3").on('click', changeOriginFormulaResultValueToTrue);
+
+function changeOriginFormulaResultValueToTrue() {
+    $originFormula.find('.formula-result .wrap-result').removeClass('failed-matching').text('T');
+    $originFormula.addClass('highlite-result');
+}
+

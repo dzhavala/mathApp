@@ -3,7 +3,7 @@ body {
 }
 
 .container {
-    max-width: 530px;
+    max-width: 580px;
     margin: 0 auto;
 }
 
@@ -13,7 +13,7 @@ body {
 .truth-table {
     box-shadow: 0 1px 1px 0 rgba(0,0,0, 0.2);
     margin:0 auto 20px;
-    width: 500px;
+    width: 550px;
     }
     .truth-table th,
     .truth-table td {
@@ -131,6 +131,7 @@ body {
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+    position: relative;
     }
     .wrap-element {
         position: relative;
@@ -223,23 +224,30 @@ body {
         .show-result .formula-result {
              opacity: 1;
         }
-        .show-result .wrap-result {
+
+        /* State: highlite formula result */
+        .highlite-result .wrap-result {
             background: #fc0;
         } 
+
 
 
 /* 
     SOLUTION BLUEPRINTS
 */
 .solution-blueprints {
-    margin: -10px 0 20px;
+    margin: 0px 0 20px;
 }
 .solution-blueprint {
     margin-bottom: 10px;
     font-weight: bold;
     color: #333;
     opacity: 1;
+    overflow: hidden;
     transition: background 0.5s ease, opacity 1.5s ease;
+    float: left;
+    clear: left;
+    position: relative;
     }
     .solution-blueprint .wrap-element {}
     .solution-blueprint .wrap-left { text-align: right;}
@@ -276,9 +284,14 @@ body {
             color: red;
         }
 
+        .solution-blueprint .equation-to-process {}
+            .solution-blueprint .equation-to-process.highlited {
+                background: rgba(255,0,0,0.2);
+            }
+
 /* State: blueprint invisible */
 .solution-blueprint.invisible-state {
-    opacity: 0;
+    opacity: 0.2;
 }
 
 /* State: blueprint highlited */
@@ -286,6 +299,59 @@ body {
     color: #000;
     background: rgba(255,0,0,0.1);
 }
+
+
+/*
+    FORMULA SOLVING
+*/
+#formula-solving {
+    margin: 0 0 30px 0;
+}
+    .solving-step {
+        position: relative;
+        height: 20px;
+    }
+        .solving-wrap-element {
+            position: absolute;
+            top: 0;
+            left: 10;
+            border-bottom: #ccc solid 1px;
+            padding: 2px 5px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            background: rgba(0,0,0,.1);
+            box-sizing: content-box;
+        }
+        .solving-formula-result {
+            position: absolute;
+            box-sizing: content-box;
+        }
+
+        .solving-step .equation-to-process {}
+            .solving-step .equation-to-process.highlited {
+                background: rgba(255,0,0,0.2);
+            }
+        
+        .failed-matching {
+            position: relative;
+            }
+            .failed-matching:after {
+                content: '';
+                position: absolute;
+                z-index: 2;
+                top: 10px;
+                left: 0;
+                width: 100%;
+                max-width: 170px;
+                height: 0;
+                border-top: #f00 solid 1px;
+            }
+
+    .step-equation-blueprints {
+        margin: 20px 0 0 0;
+        font-size: 12px;
+    }
 
 
 /* 
