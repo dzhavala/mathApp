@@ -1,4 +1,8 @@
 $("[data-toggle=popover]").popover();
+function enableTabTrigger (index) {
+  $('.steps-nav-tabs').find('li').eq(index-1).removeClass('disabled');
+    console.log('trigger');
+}
 
 function highliteFormulaElement (element) {
     $(element).addClass('highlited');
@@ -100,6 +104,7 @@ function highliteProperColumn () {
 $("#run-step-1-2").on('click', function() {
     truthTableData.blur();
     highliteProperColumn();
+    enableTabTrigger(2);
 });
 
 function createBlueprints () {
@@ -153,7 +158,10 @@ function setBlueprintProperWidth ($blueprint){
               .find('.wrap-right').width($originFormula.find('.wrap-right').width());
 };
 
-$("#run-step-2-1").on('click', createBlueprints);
+$("#run-step-2-1").on('click', function() {
+    createBlueprints();
+    enableTabTrigger(3);
+});
 
 // Step 3
 $("#run-step-3-1").on('click', showResultMatching);
@@ -161,6 +169,7 @@ $("#run-step-3-1").on('click', showResultMatching);
 function showResultMatching (argument) {
     showOrigFormulaResult();
     showBlueprintsResultMatching();
+    enableTabTrigger(4);
 }
 
 function showOrigFormulaResult() {
@@ -188,6 +197,7 @@ function hideUnmatchedRulesAndMainResult () {
     changeOriginFormulaResultValue();
     highliteMatchedTableRow();
     hideOriginFormulaMarkers();
+    enableTabTrigger(5);
 }
 
 
@@ -250,6 +260,7 @@ function showSolvingSteps () {
         'left': $originFormula.find('.wrap-result').position().left,
         'width': $originFormula.find('.wrap-result').width()
     });
+    enableTabTrigger(6);
 }
 
 // Step 6
@@ -323,6 +334,7 @@ $("#run-step-6-3").on('click', showStepEquationResultMatching);
 function showStepEquationResultMatching () {
     showOrigStepEquationFormulaResult();
     showStepEquationBlueprintsResultMatching();
+    enableTabTrigger(7);
 }
 
 function showOrigStepEquationFormulaResult() {

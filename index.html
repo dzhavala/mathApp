@@ -19,7 +19,7 @@
         <div class="container">
 
             <!-- Truth table -->
-            <table id="truth-table" class="truth-table table table-bordered table-condensed">
+            <table id="truth-table" class="truth-table">
                 <thead>
                     <tr>
                         <th class="x">x</th>
@@ -151,14 +151,14 @@
 
             <!-- Steps -->
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs">
+                <ul class="steps-nav-tabs">
                     <li class="active"><a href="#step-1" data-toggle="tab">Крок 1</a></li>
-                    <li><a href="#step-2" data-toggle="tab">Крок 2</a></li>
-                    <li><a href="#step-3" data-toggle="tab">Крок 3</a></li>
-                    <li><a href="#step-4" data-toggle="tab">Крок 4</a></li>
-                    <li><a href="#step-5" data-toggle="tab">Крок 5</a></li>
-                    <li><a href="#step-6" data-toggle="tab">Крок 6</a></li>
-                    <li><a href="#step-7" data-toggle="tab">Крок 7</a></li>
+                    <li class="disabled"><a href="#step-2" data-toggle="tab">Крок 2</a></li>
+                    <li class="disabled"><a href="#step-3" data-toggle="tab">Крок 3</a></li>
+                    <li class="disabled"><a href="#step-4" data-toggle="tab">Крок 4</a></li>
+                    <li class="disabled"><a href="#step-5" data-toggle="tab">Крок 5</a></li>
+                    <li class="disabled"><a href="#step-6" data-toggle="tab">Крок 6</a></li>
+                    <li class="disabled"><a href="#step-7" data-toggle="tab">Крок 7</a></li>
                 </ul>
                 <!-- End of Nav tabs -->
 
@@ -169,17 +169,14 @@
                     <!-- Step 1 -->
                     <div class="tab-pane fade in active active" id="step-1">
                         <!-- Step description -->
-                        <ol class="step-description well">
+                        <ol class="step-description">
                             <li class="substep">
-                                <button type="button" id="run-step-1-1" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
+                                <button type="button" id="run-step-1-1" class="run-button">
                                 </button>
                                 <div class="substep-label">Розбиваємо формулу на складові</div>
                             </li>
                             <li class="substep">
-                                <button type="button" id="run-step-1-2" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-1-2" class="run-button"></button>
                                 <div class="substep-label">Знаходимо в таблиці стовпчик з відповідною операцією</div>
                             </li>
                         </ol>
@@ -190,11 +187,9 @@
                     <!-- Step 2 -->
                     <div class="tab-pane fade" id="step-2">
                         <!-- Step description -->
-                        <ol class="step-description well">
+                        <ol class="step-description">
                             <li class="substep">
-                                <button type="button" id="run-step-2-1" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-2-1" class="run-button"></button>
                                 <div class="substep-label">Розглянемо результати всіх можливих комбінації <strong>x</strong> та <strong>y</strong> для даного виразу з таблиці істиності.</div>
                             </li>
                         </ol>
@@ -205,11 +200,9 @@
                     <!-- Step 3 -->
                     <div class="tab-pane fade" id="step-3">
                         <!-- Step description -->
-                        <ol class="step-description well">
+                        <ol class="step-description">
                             <li class="substep">
-                                <button type="button" id="run-step-3-1" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-3-1" class="run-button"></button>
                                 <div class="substep-label">Чи результати <b>всіх</b> можливих комбінації є рівними <b>True</b>?</div>
                             </li>
                         </ol>
@@ -220,11 +213,9 @@
                     <!-- Step 4 -->
                     <div class="tab-pane fade" id="step-4">
                         <!-- Step description -->
-                        <ol class="step-description well">
+                        <ol class="step-description">
                             <li class="substep">
-                                <button type="button" id="run-step-4-1" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-4-1" class="run-button"></button>
                                 <div class="substep-label">Перевіримо чи може існувати така комбінація, результат якої є <b>false</b></div>
                             </li>
                         </ol>
@@ -235,11 +226,9 @@
                     <!-- Step 5 -->
                     <div class="tab-pane fade" id="step-5">
                         <!-- Step description -->
-                        <ol class="step-description well">
+                        <ol class="step-description">
                             <li class="substep">
-                                <button type="button" id="run-step-5-1" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-5-1" class="run-button"></button>
                                 <div class="substep-label">Підставляємо значення у вираз</div>
                             </li>
                         </ol>
@@ -250,23 +239,17 @@
                     <!-- Step 6 -->
                     <div class="tab-pane fade" id="step-6">
                         <!-- Step description -->
-                        <ol class="step-description well">
+                        <ol class="step-description">
                             <li class="substep">
-                                <button type="button" id="run-step-6-1" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-6-1" class="run-button"></button>
                                 <div class="substep-label">Перевіримо чи може існувати така комбінація <b>(F&#8743;q)</b>, результат якої є <b>True</b></div>
                             </li>
                             <li class="substep">
-                                <button type="button" id="run-step-6-2" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-6-2" class="run-button"></button>
                                 <div class="substep-label">Розглянемо результати всіх можливих комбінації <strong>x</strong> та <strong>y</strong> для даного виразу з таблиці істиності.</div>
                             </li>
                             <li class="substep">
-                                <button type="button" id="run-step-6-3" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-6-3" class="run-button"></button>
                                 <div class="substep-label">Чи існують комбінації, результатом яких є <b>True</b>?</div>
                             </li>
                         </ol>
@@ -277,23 +260,17 @@
                     <!-- Step 7 -->
                     <div class="tab-pane fade" id="step-7">
                         <!-- Step description -->
-                        <ol class="step-description well">
+                        <ol class="step-description">
                             <li class="substep">
-                                <button type="button" id="run-step-7-1" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-7-1" class="run-button"></button>
                                 <div class="substep-label">Такої комбінації не існує, отже вираз не може бути рівним <b>True</b></div>
                             </li>
                             <li class="substep">
-                                <button type="button" id="run-step-7-2" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-7-2" class="run-button"></button>
                                 <div class="substep-label">Отже початкове висловлення, значенням якого було б <b>False</b> не може існувати</div>
                             </li>
                             <li class="substep">
-                                <button type="button" id="run-step-7-3" class="run-button btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
+                                <button type="button" id="run-step-7-3" class="run-button"></button>
                                 <div class="substep-label">Звідси випливає, що початкове висловлення має значення <b>True</b>. Висловлення є тавтологією. Задачу доведено!</div>
                             </li>
                         </ol>

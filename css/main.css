@@ -1,5 +1,6 @@
 body {
     padding: 20px;
+    background: #e5eaf0;
 }
 
 .container {
@@ -11,22 +12,25 @@ body {
     TRUTH TABLE 
 */
 .truth-table {
-    box-shadow: 0 1px 1px 0 rgba(0,0,0, 0.2);
     margin:0 auto 20px;
-    width: 550px;
+    width: 100%;
     }
     .truth-table th,
     .truth-table td {
         vertical-align: top !important;
         text-align: center;
         min-width: 40px;
+        padding: 5px;
+        background: rgba(255,255,255,0.6);
         transition: background 0.5s ease;
+        border: #e5eaf0 solid 1px;
     }
     .truth-table thead th {
         text-align: center;
-        border-bottom: #ccc solid 2px;
-        background: #eee;
+        border-bottom: #e5eaf0 solid 1px;
+        background: #58ccc9;
         min-width: 35px;
+        color: #fff;
         vertical-align: top;
         }
         .truth-table thead th .descr {
@@ -34,17 +38,22 @@ body {
             font-size: 11px;
             font-style: italic;
             font-weight: normal;
-            color: #666;
+            color: #fff;
         }
     .truth-table tbody th {
-        text-align: center;
-        background: #f9f9f9;
+        background: #fff;
+        font-size: 13px;
+        padding: 2px; 
+    }
+    .truth-table tbody td {
+        font-size: 13px;
+        padding: 2px;
     }
 
     /* State: highlited cell */
     .truth-table th.highlited,
     .truth-table td.highlited {
-        background: rgba(255,0,0,0.1);
+        background: rgba(162, 235, 220, 0.67);
     }
 
     /* Type: blurred */
@@ -52,7 +61,7 @@ body {
         color: #aaa
         }
         .truth-table.blurred .descr {
-            color: #ccc
+            
         }
         /* State: highlited column */
         .truth-table.blurred .highlited,
@@ -67,12 +76,12 @@ body {
 
     /* State: highlited row */
     .truth-table .highlited-row td {
-        background: rgba(255,0,0,0.05);
+        background: rgba(162, 235, 220, 0.67);
         }
         .truth-table .highlited-row .highlited,
         .truth-table .highlited-row .x,
         .truth-table .highlited-row .y {
-            background: rgba(255,0,0,0.2);
+            background:rgba(162, 235, 220, 1);
         }
 
 
@@ -81,26 +90,29 @@ body {
 */
 .problem-condition {
     margin-bottom: 30px;
-    padding: 20px;
+    padding: 15px;
     position: relative;
-    border: #ddd solid 1px;
-    border-radius: 5px;
+    border: #58ccc9 solid 5px;
+    background: #fff
     }
     .block-title {
         position: absolute;
-        top: -9px;
+        top: -12px;
         left: 10px;
-        padding: 0 10px;
-        background: #fff;
+        padding: 1px 10px;
+        background: #58ccc9;
+        color: #fff;
         font-size: 12px;
     }
     .condition-title {
         font-size: 14px;
-        margin: 0 0 10px;
+        display: inline-block;
+        margin: 0 20px 0 0;
     }
     .condition-formula {
-        text-align: center;
+        font-size: 18px;
         font-weight: bold;
+        display: inline-block;
     }
 
     .popover-trigger {
@@ -113,13 +125,6 @@ body {
         font-size: 11px;
     }
 
-
-/* 
-    TABS 
-*/
-.tab-pane {
-    padding: 10px;
-}
 
 
 /* 
@@ -150,9 +155,8 @@ body {
             text-align: center;
             font-size: 10px;
             font-weight: bold;
-            background: rgba(255,0,0,0.1);
+            background: rgba(162, 235, 220, 0.67);
             transition: all .5s ease;
-            border-radius: 4px;
         }
 
         .wrap-left {
@@ -183,14 +187,12 @@ body {
 
         /* State: highlited */
         .wrap-element.highlited {
-            background: #ddd;
-            text-shadow:0 1px 0 #fff;
-            border-radius: 4px;
+            background: #7BC1F0;
             }
             .wrap-operation.highlited {
                 padding: 0 5px;
                 margin-top: 2px;
-                background: #CBD3F0;
+                background: #7BD9F0;
             }
 
         /* State: Show markers */
@@ -227,7 +229,7 @@ body {
 
         /* State: highlite formula result */
         .highlite-result .wrap-result {
-            background: #fc0;
+            background: #F5D65B;
         } 
 
 
@@ -259,7 +261,7 @@ body {
     /* Result in blueprint unit matches with result of orig formula */
     .solution-blueprint .result-match { 
         float: left;
-        margin: 4px 0 0 10px;
+        margin: 5px 0 0 10px;
         font-size: 10px;
         opacity: 0;
         transition: opacity 0.5s ease 2s;
@@ -270,7 +272,7 @@ body {
         
         /* Show result mathing */
         .solution-blueprint.show-result-matching .wrap-result {
-            background: #fc0;
+            background: #F5D65B;
         } 
         .solution-blueprint.show-result-matching .result-match {
             opacity: 1;
@@ -297,7 +299,7 @@ body {
 /* State: blueprint highlited */
 .solution-blueprint.highlited {
     color: #000;
-    background: rgba(255,0,0,0.1);
+    background: rgba(162, 235, 220, 0.67);
 }
 
 
@@ -315,14 +317,19 @@ body {
             position: absolute;
             top: 0;
             left: 10;
-            border-bottom: #ccc solid 1px;
             padding: 2px 5px;
             text-align: center;
-            color: #666;
-            font-size: 12px;
-            background: rgba(0,0,0,.1);
+            font-size: 13px;
+            font-weight: bold;
+            background: #7BC1F0;
             box-sizing: content-box;
         }
+        .solving-wrap-element.el-operation,
+        .solving-wrap-element.el-equal {
+            background: #7BD9F0;
+        }
+
+        
         .solving-formula-result {
             position: absolute;
             box-sizing: content-box;
@@ -333,6 +340,10 @@ body {
                 background: rgba(255,0,0,0.2);
             }
         
+        .main-equation-step-blueprint {
+            background: rgba(255,0,0,0.2);
+        }
+
         .failed-matching {
             position: relative;
             }
@@ -355,24 +366,104 @@ body {
 
 
 /* 
+    STEP NAV TABS
+*/
+.steps-nav-tabs {
+    display: table;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    }
+    .steps-nav-tabs li {
+        display: table-cell;
+        float: none;
+        padding: 0 1px 0 0;
+        margin: 0;
+        }
+        .steps-nav-tabs li:last-child {
+            padding-right: 0;
+        }
+        .steps-nav-tabs li a {
+            text-decoration: none;
+            display: block;
+            background: #58ccc9;
+            color: #fff;
+            padding: 10px 10px;
+            white-space: nowrap;
+            text-align: center;
+
+        }
+        .steps-nav-tabs li a:hover {
+            background: #7ed8d5;
+        }
+        
+        /* State: li is active */
+        .steps-nav-tabs li.active a,
+        .steps-nav-tabs li.active a:hover {
+            background: #fff;
+            color: #333;
+        }
+        /* State: li is disabled */
+        .steps-nav-tabs li.disabled {
+            opacity: 0.5;
+            pointer-events:none;
+        }
+        .steps-nav-tabs li.disabled a,
+        .steps-nav-tabs li.disabled a:hover {
+            background: #58ccc9;
+            cursor: default;
+        }
+/* 
+    TABS 
+*/
+.tab-content {
+    background: #fff;
+}
+.tab-pane {
+    padding: 30px 20px;
+}
+
+/* 
     STEP DESCRIPTION 
 */
 .step-description {
     font-size: 12px;
     margin: 0;
+    padding: 0;
     list-style: none;
     }
     .substep {
-        margin: 0 0 15px 0;
+        margin: 0 0 25px 0;
         padding: 0 0 0 40px;
         position: relative;
         transition: opacity 0.5s ease;
         }
         .substep .run-button {
             position: absolute;
-            top: -7px;
+            top: 50%;
             left: 0;
-        }
+            width: 30px;
+            height: 30px;
+            margin-top: -16px;
+            border-radius: 100%;
+            background: #58ccc9;
+            border: none;
+            outline: none;
+            }
+            .substep .run-button:before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                border: transparent solid 10px;
+                border-width: 5px 0px 5px 7px;
+                border-left-color: #fff;
+                margin: -5px 0 0 -2px;
+            }
+            .substep .run-button:hover {
+                background: #7ed8d5;
+            }
         .substep .substep-label {}
     
         .substep:last-child {
